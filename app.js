@@ -6,6 +6,9 @@ require('dotenv/config');
 // Prevent collection name end with 's'
 mongoose.pluralize(null);
 
+// Prevent collection.ensureIndex is deprecated
+mongoose.set('useCreateIndex', true)
+
 // Middleware for route
 const app = express();
 const routes = require('./routes/routes');
