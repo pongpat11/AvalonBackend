@@ -1,26 +1,16 @@
 const express = require('express');
+const mongoose = require('mongoose');
+require('dotenv/config');
 
+// Middleware for route
 const app = express();
-
-const mongoose = require('mongoose')
-//Middlewares (use for Authenication)
-// app.use('/posts', () => {
-//     console.log('This is middleware running');
-// });
-
-//Routes
-app.get('/', (req, res) => {
-    res.send('We are on home,');
-});
-
-app.get('/posts', (req, res) => {
-    res.send('We are on post,');
-});
+const routes = require('./routes/routes');
+app.use('/', routes);
 
 //Connect to DB
-mongoose.connect('')
-
-
+mongoose.connect(process.env.DB_CONNECTION, {useNewUrlParser: true}, () => {
+    console.log('MongoDB connected!!');
+})
 
 //How to we start listening to the server
 app.listen(3000);
