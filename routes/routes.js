@@ -1,12 +1,20 @@
 const express = require('express');
 const router = express();
+const {check, validatorResult} = require('express-validator');
 
-const auth = require('./api/auth');
-const register = require('./api/register');
+const auth = require('./controller/auth');
+const register = require('./controller/register');
 
-router.post('/', auth);
+// Login
+router.post('/login', [ 
+    check('email').isEmail(),
+    check('password').isLength({min: 5})
+  ], auth);
 
 // Register api
-router.post('/register', register);
+router.post('/register', [
+  check('email').isEmail(),
+  check('password').isLength({min: 5})
+], register);
 
 module.exports = router;
