@@ -15,9 +15,7 @@ const UserSchema = mongoose.Schema({
     },
     name: {
         type: String,
-        unique: true,
         required: true,
-        dropDups: true
     },
     profilePic: String,
     friend: [String]

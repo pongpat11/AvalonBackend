@@ -1,11 +1,10 @@
 const express = require('express');
 const router = express();
 
+const auth = require('./api/auth');
 const register = require('./api/register');
 
-router.get('/', (req, res) => {
-    res.send('Hello world');
-});
+router.post('/', auth);
 
 // Register api
 router.post('/register', register);
