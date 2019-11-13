@@ -1,4 +1,4 @@
-const User = require('../../schema/User');
+const User = require('../../../schema/User');
 
 module.exports = async (userData) => {
     try{
