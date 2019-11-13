@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken');
+const findUser = require('../model/user/findUser');
 const {validationResult} = require('express-validator');
 require('dotenv/config');
 
@@ -17,7 +18,6 @@ module.exports = async (req, res) => {
             })
         }
 
-        const findUser = require('../model/findUser');
         const userData = await findUser(user);
         if(userData) {
             const token = jwt.sign(user, process.env.jwtSecret, {expiresIn: '24h'});
