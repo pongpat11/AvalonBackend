@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 require('dotenv/config');
 
 // Prevent collection name end with 's'
@@ -12,6 +13,7 @@ mongoose.set('useCreateIndex', true)
 // Middleware for route
 const app = express();
 const routes = require('./routes/routes');
+app.use(cors())
 app.use(bodyParser.json());
 app.use('/', routes);
 
