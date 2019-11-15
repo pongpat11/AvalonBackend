@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express();
-const {check, validatorResult} = require('express-validator');
+const {check} = require('express-validator');
 
+const permit = require('./permission');
 const auth = require('./controller/auth');
 const register = require('./controller/register');
 
