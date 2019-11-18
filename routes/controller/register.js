@@ -22,7 +22,8 @@ module.exports = async (req, res) => {
         if(insertResult.success === true) {
             return res.status(200).json({
                 success: true,
-                message: 'Insert user is successful'
+                message: 'Insert user is successful',
+                userData: insertResult.userData
             });
         } else {
             return res.status(400).json({
@@ -33,7 +34,7 @@ module.exports = async (req, res) => {
     } catch (err) {
         return res.status(400).json({
             success: false,
-            message: err
+            message: "TRUE"
         });
     }
 }

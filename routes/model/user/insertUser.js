@@ -1,15 +1,16 @@
 const User = require('../../../schema/User');
 
-module.exports = async (userData) => {
+module.exports = async (user) => {
     try{
-        const user = await userData.save();
-        return res.json({
+        const data = await user.save();
+        return {
             success: true,
-        });
+            userData: data
+        };
     } catch (err) {
-        return res.json({
+        return {
             success: false,
             message: err
-        });
+        };
     }
 } 

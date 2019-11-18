@@ -1,6 +1,6 @@
 const User = require('../../../schema/User');
 
-module.exports = async (userKey) => {
-    const userData = await User.findOne(userKey);
+module.exports = async (user) => {
+    const userData = await User.findOne(user);
     return userData;
 } 
