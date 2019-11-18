@@ -13,7 +13,7 @@ const UserSchema = mongoose.Schema({
         required: true,
         dropDups: true
     },
-    name: {
+    username: {
         type: String,
         required: true,
     },
