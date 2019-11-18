@@ -8,7 +8,10 @@ const RoomSchema = mongoose.Schema({
     password: {
         type: String
     },
-    playerInRoom: [String],
+    playerInRoom: [{
+        userName: String,
+        role: Number
+    }],
     friend: [String]
 });
 
