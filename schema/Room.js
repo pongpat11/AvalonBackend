@@ -12,7 +12,10 @@ const RoomSchema = mongoose.Schema({
         userName: String,
         role: Number
     }],
-    friend: [String]
+    roomStatus: {
+        type: String,
+        required: true
+    }
 });
 
 module.exports = mongoose.model('room', RoomSchema);
