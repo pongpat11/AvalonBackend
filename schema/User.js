@@ -17,7 +17,10 @@ const UserSchema = mongoose.Schema({
         type: String,
         required: true,
     },
-    profilePic: String,
+    profilePic: {
+        type: String,
+        required: true
+    },
     friend: [String]
 });
 
