@@ -3,19 +3,12 @@ const mongoose = require('mongoose');
 const RoomSchema = mongoose.Schema({
     roomName: {
         type: String,
-        required: true,
+        required: true
     },
     password: {
-        type: String,
-        unique: true,
-        required: true,
-        dropDups: true
+        type: String
     },
-    name: {
-        type: String,
-        required: true,
-    },
-    profilePic: String,
+    playerInRoom: [String],
     friend: [String]
 });
 
