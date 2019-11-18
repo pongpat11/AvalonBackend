@@ -7,7 +7,7 @@ module.exports = async (req, res) => {
         email: req.body.email,
         password: req.body.password,
         name: req.body.name,
-        profilePic: req.body.profilePic
+        photoUrl: req.body.photoUrl
     });
     try {
         const err = await validationResult(req);

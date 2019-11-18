@@ -17,7 +17,7 @@ const UserSchema = mongoose.Schema({
         type: String,
         required: true,
     },
-    profilePic: {
+    photoUrl: {
         type: String,
         required: true
     },
