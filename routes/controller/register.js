@@ -19,7 +19,6 @@ module.exports = async (req, res) => {
         }
 
         const insertResult = await insertUser(user);
-        console.log(insertResult)
         if(insertResult.success === true) {
             return res.status(200).json({
                 success: true,
@@ -31,7 +30,6 @@ module.exports = async (req, res) => {
                 message: insertResult.message
             });
         }
-
     } catch (err) {
         return res.status(400).json({
             success: false,
