@@ -18,4 +18,13 @@ router.post('/register', [
   check('password').isLength({min: 5})
 ], register);
 
+// socket io test
+router.get('/test', (req, res) => {
+  res.sendFile(__dirname + '/socketBackendTest.html');
+});
+
+router.get('/test2', (req, res) => {
+  res.sendFile(__dirname + '/socketBackendTest2.html');
+});
+
 module.exports = router;

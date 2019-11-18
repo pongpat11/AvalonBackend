@@ -1,7 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-const socketIO = require('socket.io');
 const cors = require('cors');
 require('dotenv/config');
 
@@ -31,13 +30,6 @@ mongoose.connect(process.env.DB_CONNECTION, {useNewUrlParser: true, useUnifiedTo
 // How to we start listening to the server
 const server = app.listen(3000);
 
-// Socket listening to the server
-const io = socketIO.listen(server);
-
-io.on('connect', client => {
-    console.log('user connected');
-    
-    client.on('disconnect', () => {
-        console.log('user disconnected');
-    });
-});
+// SocketIO listening to the server
+const socketIO = require('./socket/socket');
+socketIO(server);
