@@ -19,7 +19,7 @@ router.post('/register', [
   check('password').isLength({min: 5})
 ], register);
 
-// Get user information
+// Get 1 user information from token 
 router.get('/user', permit(), getUser);
 /*
 // socket io test

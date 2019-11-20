@@ -4,7 +4,7 @@ const {validationResult} = require('express-validator');
 require('dotenv/config');
 
 module.exports = async (req, res) => {
-    const user = {
+    let user = {
         email: req.body.email,
         password: req.body.password,
     }
@@ -20,12 +20,13 @@ module.exports = async (req, res) => {
 
         const userData = await findUser(user);
         if (userData) {
+            user._id = userData[0]._id
             const token = jwt.sign(user, process.env.jwtSecret, {expiresIn: '24h'});
             return res.status(200).json({
                 success: true,
                 message: 'Login success',
                 token: token,
-                userData: userData
+                userData: userData[0]
             });
         } else {
             return res.json({
