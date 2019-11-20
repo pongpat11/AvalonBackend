@@ -17,7 +17,7 @@ module.exports = () => {
                     });
                 } else {
                     if (decoded) {
-                        console.log(decoded);
+                        req.email = decoded.email;
                         next();
                     } else {
                         return res.status(400).json({

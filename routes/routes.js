@@ -20,7 +20,7 @@ router.post('/register', [
 ], register);
 
 // Get user information
-router.get('/user/:userid', permit(), getUser);
+router.get('/user', permit(), getUser);
 /*
 // socket io test
 router.get('/test', (req, res) => {

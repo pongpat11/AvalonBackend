@@ -2,7 +2,7 @@ const findUser = require('../model/user/findUser');
 
 module.exports = async (req, res) => {
     const user = {
-        _id: req.params.userid
+        email: req.email
     }
     try {
         // Input invalid
