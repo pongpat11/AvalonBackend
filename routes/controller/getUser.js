@@ -1,22 +1,22 @@
-const findRoom = require('../model/room/findRoom');
+const findUser = require('../model/user/findUser');
 
 module.exports = async (req, res) => {
-    const room = {
-        roomStatus: 'wating'
+    const user = {
+        _id: req.params.userid
     }
     try {
         // Input invalid
-        const roomData = await findUser(room);
+        const userData = await findUser(user);
         if (userData) {
             return res.status(200).json({
                 success: true,
-                message: 'Login success',
-                token: roomData
+                message: 'User found',   
+                token: userData
             });
         } else {
             return res.json({
                 success: false,
-                message: 'invalid email or password'
+                message: 'User not found'
             });
         }
     } catch (err) {

@@ -24,7 +24,8 @@ module.exports = async (req, res) => {
             return res.status(200).json({
                 success: true,
                 message: 'Login success',
-                token: token
+                token: token,
+                userData: userData
             });
         } else {
             return res.json({

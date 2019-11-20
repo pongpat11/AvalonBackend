@@ -5,6 +5,7 @@ const {check} = require('express-validator');
 const permit = require('./permission');
 const auth = require('./controller/auth');
 const register = require('./controller/register');
+const getUser = require('./controller/getUser');
 
 // Login
 router.post('/login', [ 
@@ -18,6 +19,8 @@ router.post('/register', [
   check('password').isLength({min: 5})
 ], register);
 
+// Get user information
+router.get('/user/:userid', permit(), getUser);
 /*
 // socket io test
 router.get('/test', (req, res) => {
