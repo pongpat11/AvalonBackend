@@ -17,6 +17,7 @@ module.exports = () => {
                     });
                 } else {
                     if (decoded) {
+                        console.log(decoded);
                         next();
                     } else {
                         return res.status(400).json({
