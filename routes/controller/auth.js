@@ -20,6 +20,7 @@ module.exports = async (req, res) => {
 
         const userData = await findUser(user);
         if (userData) {
+            delete user['password'];
             user._id = userData[0]._id
             const token = jwt.sign(user, process.env.jwtSecret, {expiresIn: '24h'});
             return res.status(200).json({
