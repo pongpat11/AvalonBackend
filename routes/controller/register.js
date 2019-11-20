@@ -12,6 +12,7 @@ module.exports = async (req, res) => {
     try {
         const err = await validationResult(req);
         if(!err.isEmpty()) {
+            console.log(err);
             return res.status(400).json({
                 success: false,
                 message: 'Invalid email or password'
@@ -34,7 +35,7 @@ module.exports = async (req, res) => {
     } catch (err) {
         return res.status(400).json({
             success: false,
-            message: "TRUE"
+            message: err
         });
     }
 }

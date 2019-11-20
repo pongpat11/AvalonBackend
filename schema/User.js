@@ -9,13 +9,13 @@ const UserSchema = mongoose.Schema({
     },
     password: {
         type: String,
-        unique: true,
-        required: true,
-        dropDups: true
+        required: true
     },
     username: {
         type: String,
+        unique: true,
         required: true,
+        dropDups: true
     },
     photoUrl: {
         type: String,
