@@ -6,7 +6,7 @@ module.exports = async (req, res) => {
     const user = new User({
         email: req.body.email,
         password: req.body.password,
-        name: req.body.name,
+        username: req.body.username,
         photoUrl: req.body.photoUrl
     });
     try {
