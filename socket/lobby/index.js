@@ -4,28 +4,22 @@ module.exports = (io) => {
   let players = [];
 
   lobbyIo.on('connection', socket => {
-    
-    socket.on('enterLobby', player => {
-      if(players.findIndex(p => p.username === player.username) <= -1 ) {
-        players.push(player);
-        socket.username = player.username
-        console.log(`${player.username} is connected!`);
-      }      
-    })
+    let { username, userId } = socket.handshake.query;
+    let user = { username, userId, socketId: socket.id };
+    if (players.findIndex(({ userId, socketId }) => userId === user.userId) <= -1) {
+      // if user isn't in array players
+      console.log(`${username} is connected`);
+      players.push(user);
+    }
 
     socket.on('disconnect', () => {
-      console.log(`${socket.username} is disconnected`);
-      let index = -1;
-      for (let i = 0; i<= players.length; i++) {
-        if (players[i].username === socket.username) {
-          index = i;
-          break;
-        }
+      const playerIndex = players.findIndex(({ userId }) => userId === socket.handshake.query.userId);
+      if (playerIndex > -1) {
+        // if user exit in array playsers
+        players.pop(playerIndex);
+        console.log(`disconnected`);
       }
-      if (index > -1) {
-        players.pop(index);
-      }
-      socket.username = null;
+      
     })
   })
 }
