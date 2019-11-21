@@ -1,15 +1,14 @@
+const { addPlayer, removePlayer } = require('../data/playersOnlineList');
+
 module.exports = (io) => {
   let lobbyIo = io.of('/lobby');
   let rooms = [];
-  let players = [];
 
   lobbyIo.on('connection', socket => {
     let { username, userId } = socket.handshake.query;
-    let user = { username, userId, socketId: socket.id };
-    if (players.findIndex(({ userId, socketId }) => userId === user.userId) <= -1) {
-      // if user isn't in array players
-      console.log(`${username} is connected`);
-      players.push(user);
+    let user = { username, id: userId };
+    if (addPlayer(user)) {
+      console.log(`${username} is connected!`);
     }
 
     socket.on('createRoom', (room) => {
@@ -25,11 +24,9 @@ module.exports = (io) => {
     })
 
     socket.on('disconnect', () => {
-      const playerIndex = players.findIndex(({ userId }) => userId === socket.handshake.query.userId);
-      if (playerIndex > -1) {
-        // if user exit in array playsers
-        players.pop(playerIndex);
-        console.log(`disconnected`);
+      
+      if (removePlayer({ id: socket.handshake.query.userId })) {
+        console.log('disconnected');
       }
       
     })
