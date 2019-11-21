@@ -12,6 +12,18 @@ module.exports = (io) => {
       players.push(user);
     }
 
+    socket.on('createRoom', (room) => {
+      let newRoom = {
+        room_id: rooms.length,
+        room_name: room.roomName,
+        room_password: room.roomPassword,
+        room_mode: room.roomMode,
+        room_max: room.roomSize
+      }
+      rooms.push(newRoom)
+      socket.emit('rooms', rooms);
+    })
+
     socket.on('disconnect', () => {
       const playerIndex = players.findIndex(({ userId }) => userId === socket.handshake.query.userId);
       if (playerIndex > -1) {
