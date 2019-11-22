@@ -5,7 +5,7 @@ const RoomSchema = mongoose.Schema({
         type: String,
         required: true,
     },
-    password: {
+    roomPassword: {
         type: String,
         required: false
     },
