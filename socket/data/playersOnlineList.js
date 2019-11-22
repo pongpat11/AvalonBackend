@@ -9,6 +9,10 @@ const addPlayer = ({ id, username, photoUrl }) => {
   return false
 }
 
+const getPlayers = () => {
+  return players;
+}
+
 const removePlayer = ({ id }) => {
   const playerIndex = players.findIndex(player => player.id === id)
   if (playerIndex > -1) {
@@ -18,4 +22,4 @@ const removePlayer = ({ id }) => {
   return false
 }
 
-module.exports = { addPlayer, removePlayer }
+module.exports = { addPlayer, removePlayer, getPlayers }

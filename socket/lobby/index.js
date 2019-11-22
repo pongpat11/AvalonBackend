@@ -1,8 +1,8 @@
 const { addPlayer, removePlayer } = require('../data/playersOnlineList');
+const { addRoom, getAllRoom } = require('../data/roomList');
 
 module.exports = (io) => {
   let lobbyIo = io.of('/lobby');
-  let rooms = [];
 
   lobbyIo.on('connection', socket => {
     let { username, userId } = socket.handshake.query;
@@ -13,22 +13,19 @@ module.exports = (io) => {
 
     socket.on('createRoom', (room) => {
       let newRoom = {
-        room_id: rooms.length,
-        room_name: room.roomName,
-        room_password: room.roomPassword,
-        room_mode: room.roomMode,
-        room_max: room.roomSize
+        roomName: room.roomName,
+        roomPassword: room.roomPassword,
+        roomMode: room.roomMode,
+        roomSize: room.roomSize
       }
-      rooms.push(newRoom)
-      socket.emit('rooms', rooms);
+      let createdRoom = addRoom(newRoom);
+      socket.emit('newRoom', createdRoom);
     })
 
     socket.on('disconnect', () => {
-      
       if (removePlayer({ id: socket.handshake.query.userId })) {
         console.log('disconnected');
       }
-      
     })
   })
 }
