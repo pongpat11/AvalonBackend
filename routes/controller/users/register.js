@@ -1,5 +1,5 @@
-const User = require('../../schema/User');
-const insertUser = require('../model/user/insertUser');
+const User = require('../../../schema/User');
+const insertUser = require('../../model/user/insertUser');
 const {validationResult} = require('express-validator');
 
 module.exports = async (req, res) => {

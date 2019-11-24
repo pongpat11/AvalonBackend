@@ -1,5 +1,5 @@
-const Room = require('../../schema/Room');
-const insertRoom = require('../model/room/insertRoom');
+const Room = require('../../../schema/Room');
+const insertRoom = require('../../model/room/insertRoom');
 
 module.exports = async (req, res) => {
     try {
