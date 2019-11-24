@@ -22,7 +22,7 @@ const RoomSchema = mongoose.Schema({
     },
     leader: {
         type: String,
-        required: true
+        required: false
     },
     player: [{
         playerName: {
