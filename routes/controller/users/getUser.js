@@ -2,7 +2,11 @@ const findUser = require('../../model/user/findUser');
 
 module.exports = async (req, res) => {
     const user = {
-        _id: req._id
+        _id: req.body.userID,
+        email: req.body.email,
+        password: req.body.password,
+        username: req.body.username,
+        photoUrl: req.body.photoUrl
     }
     try {
         // Input invalid

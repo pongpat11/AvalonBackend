@@ -17,7 +17,7 @@ module.exports = () => {
                     });
                 } else {
                     if (decoded) {
-                        req._id = decoded._id;
+                        req.userID = decoded._id;
                         next();
                     } else {
                         return res.status(400).json({

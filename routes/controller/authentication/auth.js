@@ -4,12 +4,9 @@ const {validationResult} = require('express-validator');
 require('dotenv/config');
 
 module.exports = async (req, res) => {
-    let user = {
-        email: req.body.email,
-        password: req.body.password,
-    }
     try {
         // Input invalid
+        console.log(req.body);
         const err = await validationResult(req);
         if (!err.isEmpty()) {
             return res.status(400).json({
@@ -18,7 +15,14 @@ module.exports = async (req, res) => {
             })
         }
 
+        const user = {
+            email: req.body.email,
+            password: req.body.password,
+        }
+
+        console.log(123)
         const userData = await findUser(user);
+        console.log(userData);
         if (userData) {
             delete user['password'];
             user._id = userData[0]._id
