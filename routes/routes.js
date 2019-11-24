@@ -8,6 +8,7 @@ const register = require('./controller/register');
 const getUser = require('./controller/getUser');
 const createRoom = require('./controller/createRoom');
 const getWaitingRooms = require('./controller/rooms/getWaitingRooms');
+const getRoomById = require('./controller/rooms/getRoomById');
 
 // Login
 router.post('/login', [ 
@@ -26,6 +27,7 @@ router.get('/user', permit(), getUser);
 
 router.post('/room', createRoom);
 router.get('/rooms', getWaitingRooms);
+router.get('/rooms/:id', getRoomById);
 /*
 // socket io test
 router.get('/test', (req, res) => {
