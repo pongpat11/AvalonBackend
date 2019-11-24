@@ -16,6 +16,10 @@ const RoomSchema = mongoose.Schema({
         default: 'Normal',
         required: true
     },
+    roomSize: {
+        type: Number,
+        required: true
+    },
     leader: {
         type: String,
         required: true
@@ -40,12 +44,12 @@ const RoomSchema = mongoose.Schema({
         type: Number,
         default: 0
     },
-    missionResult: [{
+    mission: [{
         round: {
             type: Number,
             required: true
         },
-        round: {
+        missionResult: {
             type: Number,
             required: true
         }
