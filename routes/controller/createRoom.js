@@ -6,10 +6,11 @@ module.exports = async (req, res) => {
         const room = new Room({
             roomName: req.body.roomName,
             roomPassword: req.body.roomPassword,
+            roomMode: req.body.roomMode,
             leader: req.body.leader,
             player: req.body.player,
             gamePhase: req.body.gamePhase,
-            gameTeamPicking: req.body.gameTeamPicking
+            missionResult: req.body.missionResult,
         });
 
         const insertResult = await insertRoom(room);

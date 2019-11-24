@@ -11,9 +11,14 @@ const RoomSchema = mongoose.Schema({
         type: String,
         required: false
     },
+    roomMode: {
+        type: String,
+        default: 'Normal',
+        required: true
+    },
     leader: {
         type: String,
-        required: true,
+        required: true
     },
     player: [{
         playerName: {
@@ -23,6 +28,10 @@ const RoomSchema = mongoose.Schema({
         playerRole: {
             type: String,
             default: 'Normal'
+        },
+        photoUrl: {
+            type: String,
+            required: false
         }
     }],
 
@@ -31,17 +40,16 @@ const RoomSchema = mongoose.Schema({
         type: Number,
         default: 0
     },
-    gameTeamPicking: [{
-        approve: {
-            type: Boolean,
+    missionResult: [{
+        round: {
+            type: Number,
             required: true
         },
         round: {
-            type: Boolean,
-            required: false
+            type: Number,
+            required: true
         }
-    }],
-
+    }]
 })
 
 module.exports = mongoose.model('room', RoomSchema);
