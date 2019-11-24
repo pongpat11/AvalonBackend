@@ -6,6 +6,7 @@ const permit = require('./permission');
 const auth = require('./controller/auth');
 const register = require('./controller/register');
 const getUser = require('./controller/getUser');
+const createRoom = require('./controller/createRoom');
 
 // Login
 router.post('/login', [ 
@@ -21,6 +22,8 @@ router.post('/register', [
 
 // Get 1 user information from token 
 router.get('/user', permit(), getUser);
+
+router.post('/room', createRoom);
 /*
 // socket io test
 router.get('/test', (req, res) => {

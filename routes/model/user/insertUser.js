@@ -8,9 +8,6 @@ module.exports = async (user) => {
             userData: data
         };
     } catch (err) {
-        return {
-            success: false,
-            message: err
-        };
+        throw err;
     }
 } 

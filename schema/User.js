@@ -5,7 +5,6 @@ const UserSchema = mongoose.Schema({
         type: String,
         unique: true,
         required: true,
-        dropDups: true
     },
     password: {
         type: String,
@@ -15,7 +14,6 @@ const UserSchema = mongoose.Schema({
         type: String,
         unique: true,
         required: true,
-        dropDups: true
     },
     photoUrl: {
         type: String,
