@@ -6,12 +6,11 @@ require('dotenv/config');
 module.exports = async (req, res) => {
     try {
         // Input invalid
-        console.log(req.body);
         const err = await validationResult(req);
         if (!err.isEmpty()) {
             return res.status(400).json({
                 success: false,
-                message: 'Invalid email or password'
+                message: 'Wrong input email or password'
             })
         }
 
@@ -20,26 +19,19 @@ module.exports = async (req, res) => {
             password: req.body.password,
         }
 
-        console.log(123)
         const userData = await findUser(user);
-        console.log(userData);
-        if (userData) {
-            delete user['password'];
-            user._id = userData[0]._id
-            const token = jwt.sign(user, process.env.jwtSecret, {expiresIn: '24h'});
-            return res.status(200).json({
-                success: true,
-                message: 'Login success',
-                token: token,
-                userData: userData[0]
-            });
-        } else {
-            return res.json({
-                success: false,
-                message: 'invalid email or password'
-            });
-        }
+        delete userData[0].password;
+        const token = jwt.sign(userData[0], process.env.jwtSecret, {expiresIn: '24h'});
+        return res.status(200).json({
+            success: true,
+            message: 'Login success',
+            token: token,
+            userData: userData[0]
+        });
     } catch (err) {
-        res.json({message: err});
+        return res.json({
+            success: false,
+            message: err
+        });
     }
 }

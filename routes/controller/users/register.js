@@ -19,6 +19,7 @@ module.exports = async (req, res) => {
         });
 
         const insertResult = await insertUser(user);
+        delete insertResult.password;
         return res.status(200).json({
             success: true,
             message: 'Insert user is successful',
