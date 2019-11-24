@@ -3,10 +3,10 @@ const router = express();
 const {check} = require('express-validator');
 
 const permit = require('./permission');
-const auth = require('./controller/auth');
-const register = require('./controller/register');
-const getUser = require('./controller/getUser');
-const createRoom = require('./controller/createRoom');
+const auth = require('./controller/authentication/auth');
+const register = require('./controller/users/register');
+const getUser = require('./controller/users/getUser');
+const createRoom = require('./controller/rooms/createRoom');
 const getWaitingRooms = require('./controller/rooms/getWaitingRooms');
 const getRoomById = require('./controller/rooms/getRoomById');
 

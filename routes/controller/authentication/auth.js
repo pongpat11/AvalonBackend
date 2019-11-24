@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const findUser = require('../model/user/findUser');
+const findUser = require('../../model/user/findUser');
 const {validationResult} = require('express-validator');
 require('dotenv/config');
 
