@@ -19,7 +19,7 @@ module.exports = (io) => {
         roomSize: room.roomSize
       }
       let createdRoom = addRoom(newRoom);
-      socket.emit('newRoom', createdRoom);
+      lobbyIo.emit('rooms', createdRoom);
     })
 
     socket.on('disconnect', () => {
