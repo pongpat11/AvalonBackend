@@ -1,5 +1,5 @@
 const { addPlayer, removePlayer } = require('../data/playersOnlineList');
-const { addRoom, getAllRoom } = require('../data/roomList');
+const insertRoom = require('../../routes/model/room/insertRoom');
 
 module.exports = (io) => {
   let lobbyIo = io.of('/lobby');
@@ -11,14 +11,20 @@ module.exports = (io) => {
       console.log(`${username} is connected!`);
     }
 
-    socket.on('createRoom', (room) => {
+    socket.on('createRoom', async (room) => {
       let newRoom = {
         roomName: room.roomName,
         roomPassword: room.roomPassword,
         roomMode: room.roomMode,
-        roomSize: room.roomSize
+        roomSize: room.roomSize,
+        gamePhase: 0,
+        player: [],
+        mission: [],
+        rejectCount: 0,
+        voteCount: 0
       }
-      let createdRoom = addRoom(newRoom);
+      let createdRoom = await insertRoom(newRoom);
+      console.log(createdRoom);
       lobbyIo.emit('rooms', createdRoom);
     })
 
