@@ -23,7 +23,7 @@ router.post('/register', [
 ], register);
 
 // Get 1 user information from token 
-router.get('/users', permit(), getUser);
+router.get('/user', permit(), getUser);
 
 router.post('/room', createRoom);
 router.get('/rooms', getWaitingRooms);
