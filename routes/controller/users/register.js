@@ -10,15 +10,8 @@ module.exports = async (req, res) => {
         if(!err.isEmpty()) {
             throw 'Invalid email or password';
         }
-
-        const user = new User({
-            email: req.body.email,
-            password: req.body.password,
-            username: req.body.username,
-            photoUrl: req.body.photoUrl
-        });
-
-        const insertResult = await insertUser(user);
+        
+        const insertResult = await insertUser(req.body);
         delete insertResult.password;
         return res.status(200).json({
             success: true,
