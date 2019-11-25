@@ -44,6 +44,10 @@ const RoomSchema = mongoose.Schema({
         type: Number,
         default: 0
     },
+    currentMission: {
+        type: Number,
+        default: 0
+    },
     mission: [{
         round: {
             type: Number,
